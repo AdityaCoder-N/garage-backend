@@ -61,7 +61,7 @@ router.get('/get-orders', async (req, res) => {
     const orders = await Order.find()
       .populate({
         path: 'userId',
-        model: 'User',
+        model: 'user',
       })
       .populate({
         path: 'items',
@@ -103,7 +103,7 @@ router.patch('/accept-order', async (req, res) => {
     const orders = await Order.find()
     .populate({
       path: 'userId',
-      model: 'User',
+      model: 'user',
     })
     .populate({
       path: 'items',
