@@ -6,9 +6,9 @@ const Item = require("../models/Item");
 const Order = require("../models/Order");
 
 
-router.post('/create-order', fetchUser, async (req, res) => {
+router.post('/create-order', async (req, res) => {
   try {
-    const userId = req.user.id;
+    const userId = req.body.userId;
     console.log(userId)
     // Find the user's request
     const user = await User.findOne({ _id: userId });
@@ -47,11 +47,16 @@ router.post('/create-order', fetchUser, async (req, res) => {
     return res.status(500).json({ success: false, error: 'Internal Server Error' });
   }
 });
-router.get('/get-orders', fetchUser, async (req, res) => {
+router.get('/get-orders', async (req, res) => {
   try {
-    const userId = req.user.id;
+    const userId = req.body.userId;
+    console.log(userId)
     // Find the user's request
     const user = await User.findOne({ _id: userId });
+
+    if (!user) {
+      return res.status(404).json({ success: false, error: 'User not found' });
+    }
 
     if (!user) {
       return res.status(404).json({ success: false, error: 'User not found' });
@@ -75,9 +80,10 @@ router.get('/get-orders', fetchUser, async (req, res) => {
 });
 
 
-router.delete('/delete-order', fetchUser, async (req, res) => {
+router.delete('/delete-order', async (req, res) => {
   try {
-    const userId = req.user.id;
+    const userId = req.body.userId;
+    console.log(userId)
     // Find the user's request
     const user = await User.findOne({ _id: userId });
 
