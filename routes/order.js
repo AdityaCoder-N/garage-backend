@@ -49,18 +49,15 @@ router.post('/create-order', async (req, res) => {
 });
 router.get('/get-orders', async (req, res) => {
   try {
-    const userId = req.body.userId;
-    console.log(userId)
-    // Find the user's request
-    const user = await User.findOne({ _id: userId });
+    // const userId = req.body.userId;
+    // console.log(userId)
+    // // Find the user's request
+    // const user = await User.findOne({ _id: userId });
 
-    if (!user) {
-      return res.status(404).json({ success: false, error: 'User not found' });
-    }
+    // if (!user) {
+    //   return res.status(404).json({ success: false, error: 'User not found' });
+    // }
 
-    if (!user) {
-      return res.status(404).json({ success: false, error: 'User not found' });
-    }
     const orders = await Order.find()
       .populate({
         path: 'userId',
@@ -82,14 +79,14 @@ router.get('/get-orders', async (req, res) => {
 
 router.delete('/delete-order', async (req, res) => {
   try {
-    const userId = req.body.userId;
-    console.log(userId)
-    // Find the user's request
-    const user = await User.findOne({ _id: userId });
+    // const userId = req.body.userId;
+    // console.log(userId)
+    // // Find the user's request
+    // const user = await User.findOne({ _id: userId });
 
-    if (!user) {
-      return res.status(404).json({ success: false, error: 'User not found' });
-    }
+    // if (!user) {
+    //   return res.status(404).json({ success: false, error: 'User not found' });
+    // }
    
     const { orderId } = req.body;
 
