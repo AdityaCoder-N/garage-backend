@@ -60,7 +60,7 @@ router.post('/login',
     if (!errors.isEmpty()) {
       return res.status(400).json({ success,errors: errors.array() });
     }
-    const {email,password,role} = req.body;
+    const {email,password} = req.body;
 
     try {
         let user = await User.findOne({email : email});
