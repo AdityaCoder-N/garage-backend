@@ -79,6 +79,34 @@ router.get('/get-orders', async (req, res) => {
   }
 });
 
+router.get('/get-users-orders', async (req, res) => {
+  try {
+    const userId = req.body.userId;
+    console.log(userId)
+    // Find the user's request
+    const user = await User.findOne({ _id: userId });
+
+    if (!user) {
+      return res.status(404).json({ success: false, error: 'User not found' });
+    }
+
+    const orders = await Order.find({userId:userId})
+      .populate({
+        path: 'userId',
+        model: 'user',
+      })
+      .populate({
+        path: 'items',
+        model: 'Item',
+      });
+
+    return res.status(200).json({ success: true, orders:orders});
+
+  } catch (error) {
+    console.error(error);
+    return res.status(500).json({ success: false, error: 'Internal Server Error' });
+  }
+});
 
 router.patch('/accept-order', async (req, res) => {
   try {
@@ -120,6 +148,8 @@ router.patch('/accept-order', async (req, res) => {
     return res.status(500).json({ success: false, error: 'Internal Server Error' });
   }
 });
+
+
 router.delete('/delete-order', async (req, res) => {
   try {
     // const userId = req.body.userId;
