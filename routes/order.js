@@ -79,7 +79,7 @@ router.get('/get-orders', async (req, res) => {
   }
 });
 
-router.get('/get-users-orders', async (req, res) => {
+router.post('/get-users-orders', async (req, res) => {
   try {
     const userId = req.body.userId;
     console.log(userId)
