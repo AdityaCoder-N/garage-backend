@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-const OrderSchema = new mongoose.Schema({
+const FeedbackSchema = new mongoose.Schema({
     user: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'user',
@@ -26,6 +26,6 @@ const OrderSchema = new mongoose.Schema({
     
 });
 
-const OrderModel = mongoose.model('Order', OrderSchema);
+const FeedbackModel = mongoose.model('Feedback', FeedbackSchema);
 
-module.exports = OrderModel;
+module.exports = FeedbackModel;
