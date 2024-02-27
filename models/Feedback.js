@@ -1,21 +1,20 @@
 const mongoose = require('mongoose');
 
 const OrderSchema = new mongoose.Schema({
-    userId: {
+    user: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'user',
         required: true,
     },
-    totalCost:{
+    rating:{
         type:Number
     },
-    items: [
-        {
-            type: mongoose.Schema.Types.ObjectId,
-            ref: 'Item',
-            required: true,
-        }
-    ],
+    message:{
+        type:String,
+    },
+    month:{
+        type:String
+    },
     createdAt: {
         type: Date,
         default: Date.now,
@@ -24,10 +23,7 @@ const OrderSchema = new mongoose.Schema({
         type: Date,
         default: Date.now,
     },
-    orderStatus: {
-        type: String,
-        default: 'Not Accepted',
-    },
+    
 });
 
 const OrderModel = mongoose.model('Order', OrderSchema);

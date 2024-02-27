@@ -5,6 +5,7 @@ const dotenv = require('dotenv');
 const connectToMongo = require('./db')
 const authRoutes = require('./routes/auth')
 const orderRoutes = require('./routes/order')
+const feedbackRoutes = require('./routes/feedback')
 
 
 dotenv.config();
@@ -29,6 +30,7 @@ if (process.env.NODE_ENV === "production") {
 
 app.use('/auth',authRoutes);
 app.use('/order',orderRoutes);
+app.use('/feedback',feedbackRoutes);
 
 
 app.listen(port, () => {

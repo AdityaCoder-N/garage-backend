@@ -22,10 +22,12 @@ router.post('/create-order', async (req, res) => {
     const {items} = req.body;
 
     let ids=[]
+    let totalCost=0;
     for(let i=0;i<items.length;i++){
         
         const {name,price,image,rating,address}= items[i];
 
+        totalCost+=price;
         const item = new Item({
             name,price,image,rating,address
         })
@@ -37,6 +39,7 @@ router.post('/create-order', async (req, res) => {
     const order = new Order({
         userId,
         items:ids,
+        totalCost
     })
     await order.save();
 
